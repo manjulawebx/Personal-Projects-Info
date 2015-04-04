@@ -113,6 +113,19 @@ GIT Repository:     <?php echo $project_view->prj_git_repo_url; ?></pre>
 				
 			</div>
 			
+			<?php if($project_view->prj_host_url!=""){ ?>
+			<div class="box">
+				<pre>
+Hosting URL:     <?php echo anchor($project_view->prj_host_url, $project_view->prj_host_url), "target=_blank"; ?>
+
+Username:     <?php echo $project_view->prj_host_un; ?>
+
+Password:     <?php echo $project_view->prj_host_pw; ?>
+</pre>
+				
+			</div>
+			<?php } ?>
+			
 			<?php if($project_view->prj_ftp_server!=""){ ?>
 			<div class="box">
 				<pre>
