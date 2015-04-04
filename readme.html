@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>ProjectBook by Manjula Srinath</title>
+		<style type="text/css" media="screen">
+			*{
+				font-family: sans-serif;
+				font-family: proxima-nova, sans-serif;
+				font-size: 16px;
+				font-weight: 300;
+				line-height: 25px;
+			}
+			header{min-height: 80px; padding: 60px 0 50px;}
+			header h1{text-align: center; font-size: 28px;}
+			header p{text-align: center; font-style: italic; color: #777777;}
+			section{width: 1000px; margin: 0 auto;}
+			h1{font-size: 22px; font-weight: bold;}
+			h2{font-size: 20px; margin-top: 24px; border-bottom: #bdbdbd 1px solid;}
+			.red{color: #d40024;}
+			code{color: #0051ac; font-family: monospace;}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>ProjectBook</h1>
+			<p>by Manjula Srinath</p>
+		</header>
+		
+		<section>
+			<p>This application is to maintain Web Project information as a Web Developer. Data will be stored in a MySQL database. Sensitive data like production environment passwords, hosting account, FTP passwords will be encrypted.</p>
+		
+			<h2>Encryption</h2>
+			<p>Encryption key is setup in <code>config.php</code>. Loose the key, will loose your encrypted data.</p>
+			
+			<h2>Export</h2>
+			<p>All projects data can be exported into html files. Exported files will be stored in <code>/exported/</code> folder. All sensitive data will be decoded and will be on HTML file as plain text. So those exported files <span class="red">MUST COPY TO SOMEWHERE SECURE AND DELETE <code>exported</code></span> folder content.</p>
+		</section>
+		
+	</body>
+</html>
