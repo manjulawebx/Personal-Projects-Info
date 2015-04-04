@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1><a href="<?php echo base_url();?>">ProjectBook</a></h1>
+	<h1>ProjectBook</h1>
 
 
 
@@ -26,8 +26,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</ul>
 		
 		<p>Now:<br><?php echo date('Y-m-d H:i:s'); ?></p>
-		
-		<p><?php echo anchor("projects/export/".$project_view->id, "Export All");?></p>
 	</div>
 
 
@@ -47,11 +45,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<h2><?php echo $project_view->prj_name; ?></h2>
 			<p><?php echo $project_view->prj_description; ?></p>
-			<p><?php echo anchor("projects/add/".$project_view->id, "(edit)"); ?></p>
 			
 			<div class="box">
 	   			<p><span>Client:</span>
-					<?php echo $project_view->client_name; ?> (<?php echo mailto($project_view->client_email, $project_view->client_email)?>)
+					<?php echo $project_view->cient_name; ?>
 				</p>
 				<p><span>Estimate:</span>
 					Rs. <?php echo $project_view->prj_quotation_amount; ?>
@@ -133,45 +130,18 @@ Password:     <?php echo $project_view->prj_ftp_pw; ?>
 		
 		<div class="project_logs">
 			
-			<h2>Logs</h2>
-			
 			<?php if(isset($project_logs) && $project_logs){ ?>
 				<?php foreach($project_logs as $project_log){ ?>
 				<div class="log_record">
 					<p class="date_mod"><?php echo $project_log->log_modified; ?></p>
-					<p class="log_details"><?php echo $project_log->log_details; ?></p>
-					<p class="control_links">
-						<?php echo anchor("projects/log_edit/".$project_log->id, "edit"); ?> |
-						<?php 
-							$js = array("onclick"=>"return confirm('Are you sure?')");
-							echo anchor("projects/delete_log/".$project_log->id, "delete", $js); 
-						?>
-					</p>
+					<p><?php echo $project_log->log_details; ?></p>
 				</div><!-- /.log_record -->
 				<?php } ?>
 			<?php }else{ ?>
 				<p>NO LOGS</p>
 			<?php } ?>
 			
-			
-			
-			
-			<!-- Add Project Log -->
-			<div class="add_log_wrapper">
-				
-				<?php echo form_open("projects/add_log", '', array("project_id"=>$project_view->id)) ?>
-				<p>
-					<?php echo form_textarea("project_log"); ?>
-				</p>
-				<p>
-					<?php echo form_submit("submit", "Add Log"); ?>
-				</p>
-				<?php echo form_close(); ?>
-				
-			</div><!-- /add_log_wrapper -->
-			<!-- /Add Project Log -->
-			
-			
+			<?php echo anchor("projects/add_log/".$project_view->id, "Add Log"); ?>
 			
 		</div><!-- /.project_log -->
 		

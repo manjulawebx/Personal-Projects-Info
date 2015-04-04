@@ -6,48 +6,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>ProjectsBook</title>
 
-	<link rel="stylesheet" href="<?php echo base_url();?>/css/styles.css" type="text/css" media="screen" charset="utf-8">
+	<style type="text/css" media="screen">
+		<?php echo $css; ?>
+	</style>
 </head>
 <body>
 
 <div id="container">
-	<h1><a href="<?php echo base_url();?>">ProjectBook</a></h1>
-
-
-
-
-
-
-	<div id="side-panel">
-		<ul>
-			<li><a href="<?php echo base_url("index.php/clients"); ?>">Clients</a></li>
-			<li><a href="<?php echo base_url("index.php/projects"); ?>">Projects</a></li>
-
-		</ul>
-		
-		<p>Now:<br><?php echo date('Y-m-d H:i:s'); ?></p>
-		
-		<p><?php echo anchor("projects/export/".$project_view->id, "Export All");?></p>
-	</div>
-
-
-
-
+	<h1>ProjectBook Export &raquo; <?php echo $project_view->prj_name; ?></h1>
+	<p>Exported: <?php echo date('Y-m-d H:i:s'); ?></p>
 	
-	<div id="body">
-		
-		<p><?php echo anchor("projects", "Projects"); ?> &raquo; View</p>
-
-
-		<?php if(isset($message)){ ?>
-		    <p class="message"><?php echo $message; ?></p>		    
-		<?php } ?>
+	<div id="">
 		
 		<div class="project_view">
 			
 			<h2><?php echo $project_view->prj_name; ?></h2>
 			<p><?php echo $project_view->prj_description; ?></p>
-			<p><?php echo anchor("projects/add/".$project_view->id, "(edit)"); ?></p>
 			
 			<div class="box">
 	   			<p><span>Client:</span>
@@ -57,6 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					Rs. <?php echo $project_view->prj_quotation_amount; ?>
 				</p>
 				<p class="gray-text">
+					Created: <?php echo $project_view->prj_added; ?><br>
 					Modified: <?php echo $project_view->prj_modified; ?>
 				</p>
 			</div>
@@ -152,26 +127,6 @@ Password:     <?php echo $project_view->prj_ftp_pw; ?>
 			<?php }else{ ?>
 				<p>NO LOGS</p>
 			<?php } ?>
-			
-			
-			
-			
-			<!-- Add Project Log -->
-			<div class="add_log_wrapper">
-				
-				<?php echo form_open("projects/add_log", '', array("project_id"=>$project_view->id)) ?>
-				<p>
-					<?php echo form_textarea("project_log"); ?>
-				</p>
-				<p>
-					<?php echo form_submit("submit", "Add Log"); ?>
-				</p>
-				<?php echo form_close(); ?>
-				
-			</div><!-- /add_log_wrapper -->
-			<!-- /Add Project Log -->
-			
-			
 			
 		</div><!-- /.project_log -->
 		
