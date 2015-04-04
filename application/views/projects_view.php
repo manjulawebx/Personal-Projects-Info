@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1><a href="<?php echo base_url();?>">ProjectBook</a></h1>
+	<h1><a href="<?php echo base_url();?>">ProjectsBook</a></h1>
 
 
 
