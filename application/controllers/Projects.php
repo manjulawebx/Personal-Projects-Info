@@ -50,6 +50,8 @@ class Projects extends CI_Controller {
 	public function add($id=-1){
 		$this->data["action"] = "Add";
 
+		$this->data['project_edit'] = false;
+		
 		if(isset($id) && $id>0){
 			//Show Project data for edit
 			//set a id hidden field in the form
