@@ -116,7 +116,7 @@ GIT Repository:     <?php echo $project_view->prj_git_repo_url; ?></pre>
 			<?php if($project_view->prj_host_url!=""){ ?>
 			<div class="box">
 				<pre>
-Hosting URL:     <?php echo anchor($project_view->prj_host_url, $project_view->prj_host_url), "target=_blank"; ?>
+Hosting URL:     <?php echo anchor($project_view->prj_host_url, $project_view->prj_host_url, "target=_blank"); ?>
 
 Username:     <?php echo $project_view->prj_host_un; ?>
 
