@@ -102,7 +102,8 @@ class Projects_model extends CI_Model {
                 $this->prj_added     = date('Y-m-d H:i:s');
                 $this->prj_modified  = date('Y-m-d H:i:s');
 
-                $this->id = $this->db->insert($this::DB_TABLE, $this);
+                $this->db->insert($this::DB_TABLE, $this);
+                $this->id = $this->db->insert_id();
                 
         }
 
