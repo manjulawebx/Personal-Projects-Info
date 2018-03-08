@@ -50,7 +50,7 @@ class Projects_model extends CI_Model {
 		//Return All records
 		public function all(){
 			//TODO: SELECT needed fields only
-			
+			$this->db->order_by("prj_name", "ASSC");
 			$query = $this->db->get($this::DB_TABLE);
 			if($query->num_rows()>0){
 				return $query->result();
@@ -125,6 +125,18 @@ class Projects_model extends CI_Model {
 	        else {
 	            $this->insert();
 	        }
+	    }
+	    
+	    public function search($search_text="9876543210"){
+		    $this->db->like("prj_name", $search_text, "both");
+		    $this->db->or_like("prj_description", $search_text, "both");
+		    $this->db->or_like("prj_prod_url", $search_text, "both");
+		    $query = $this->db->get($this::DB_TABLE);
+			if($query->num_rows()>0){
+				return $query->result();
+			}else{
+				return FALSE;
+			}
 	    }
 
 }

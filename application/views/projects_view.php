@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ProjectsBook</title>
+	<title>Projects Book</title>
 
 	<link rel="stylesheet" href="<?php echo base_url();?>/css/styles.css" type="text/css" media="screen" charset="utf-8">
 </head>
@@ -25,7 +25,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		</ul>
 		
-		<p>Now:<br><?php echo date('Y-m-d H:i:s'); ?></p>
+		<?php echo form_open("projects/search/", array('method' => 'get')); ?>
+			<p>
+				<?php echo form_input('search_text', set_value('search_text', isset($search_text)?$search_text:"", "")); ?>
+			</p>
+			
+			<p>
+				<?php echo form_submit('submit', 'Search'); ?>
+			</p>
+		
+		<?php echo form_close(); ?>
 		
 		<p><?php echo anchor("projects/export/".$project_view->id, "Export All");?></p>
 	</div>
@@ -196,5 +205,6 @@ Password:     <?php echo $project_view->prj_ftp_pw; ?>
 
 </div>
 
+	<p class="footer"><?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </body>
 </html>

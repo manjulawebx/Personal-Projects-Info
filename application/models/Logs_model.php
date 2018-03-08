@@ -25,6 +25,7 @@ class Logs_model extends CI_Model {
 		//Return All records. Project ID must be set
 		public function all(){
 			if($this->project_id>0){
+				$this->db->order_by("log_modified");
 				$this->db->where("project_id", $this->project_id);
 				$query = $this->db->get($this::DB_TABLE);
 				if($query->num_rows()>0){

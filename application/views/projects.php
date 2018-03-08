@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ProjectsBook</title>
+	<title>Projects Book</title>
 
 	<link rel="stylesheet" href="<?php echo base_url();?>/css/styles.css" type="text/css" media="screen" charset="utf-8">
 </head>
@@ -14,10 +14,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1>ProjectsBook</h1>
 
 
-
-
-
-
 	<div id="side-panel">
 		<ul>
 			<li><a href="<?php echo base_url("index.php/clients"); ?>">Clients</a></li>
@@ -25,7 +21,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		</ul>
 		
-		<p>Now:<br><?php echo date('Y-m-d H:i:s'); ?></p>
+		<?php echo form_open("projects/search/", array('method' => 'get')); ?>
+			<p>
+				<?php echo form_input('search_text', set_value('search_text', isset($search_text)?$search_text:"", "")); ?>
+			</p>
+			
+			<p>
+				<?php echo form_submit('submit', 'Search'); ?>
+			</p>
+		
+		<?php echo form_close(); ?>
+		
 	</div>
 
 
@@ -51,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p><?php echo anchor(base_url("index.php/projects/add"), "Add");?></p>
 		
 		<div id="list">
-			<?php if(isset($projects)){ ?>
+			<?php if(isset($projects) && is_array($projects)){ ?>
 			
 				<table class="data-table">
 					<tr>
@@ -89,5 +95,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </div>
 
+	<p class="footer"><?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </body>
 </html>

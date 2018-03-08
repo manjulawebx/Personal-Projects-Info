@@ -63,10 +63,10 @@ class Projects extends CI_Controller {
 			$project_edit->load();
 			
 			//Decode encrypted data to display
-			$project_edit->prj_prod_admin_pw    = $this->encrypt->decode($project_edit->prj_prod_admin_pw);
-			$project_edit->prj_testing_admin_pw = $this->encrypt->decode($project_edit->prj_testing_admin_pw);
-			$project_edit->prj_host_pw          = $this->encrypt->decode($project_edit->prj_host_pw);
-			$project_edit->prj_ftp_pw           = $this->encrypt->decode($project_edit->prj_ftp_pw);
+			$project_edit->prj_prod_admin_pw    = $this->encryption->decrypt($project_edit->prj_prod_admin_pw);
+			$project_edit->prj_testing_admin_pw = $this->encryption->decrypt($project_edit->prj_testing_admin_pw);
+			$project_edit->prj_host_pw          = $this->encryption->decrypt($project_edit->prj_host_pw);
+			$project_edit->prj_ftp_pw           = $this->encryption->decrypt($project_edit->prj_ftp_pw);
 		
 			$this->data['project_edit'] = $project_edit;
 			
@@ -89,7 +89,7 @@ class Projects extends CI_Controller {
             
             $project->prj_prod_admin_url = $_POST['prj_url_production_admin'];
             $project->prj_prod_admin_un  = $_POST['prj_production_admin_un'];
-            $project->prj_prod_admin_pw  = $this->encrypt->encode($_POST['prj_production_admin_pw']);
+            $project->prj_prod_admin_pw  = $this->encryption->encrypt($_POST['prj_production_admin_pw']);
         
             $project->prj_local_url       = $_POST['prj_url_local']; 
             $project->prj_local_admin_url = $_POST['prj_url_local_admin'];
@@ -99,18 +99,18 @@ class Projects extends CI_Controller {
             $project->prj_testing_url      = $_POST['prj_url_testing'];
             $project->prj_testing_admin_url= $_POST['prj_url_testing_admin'];
             $project->prj_testing_admin_un = $_POST['prj_testing_admin_un'];
-            $project->prj_testing_admin_pw = $this->encrypt->encode($_POST['prj_testing_admin_pw']);
+            $project->prj_testing_admin_pw = $this->encryption->encrypt($_POST['prj_testing_admin_pw']);
         
             $project->prj_host_url         = $_POST['prj_host_url'];
             $project->prj_host_un          = $_POST['prj_host_un'];
-            $project->prj_host_pw          = $this->encrypt->encode($_POST['prj_host_pw']);
+            $project->prj_host_pw          = $this->encryption->encrypt($_POST['prj_host_pw']);
         
             $project->prj_git_repo_url     = $_POST['prj_git_url'];
             
             $project->prj_ftp_server       = $_POST['prj_ftp_server'];
             $project->prj_ftp_path         = $_POST['prj_ftp_path'];
             $project->prj_ftp_un           = $_POST['prj_ftp_un'];
-            $project->prj_ftp_pw           = $this->encrypt->encode($_POST['prj_ftp_pw']);
+            $project->prj_ftp_pw           = $this->encryption->encrypt($_POST['prj_ftp_pw']);
             
 			$project->save();
 			
@@ -135,10 +135,10 @@ class Projects extends CI_Controller {
 			$project_view->load();
 			
 			//Decode encrypted data to display
-			$project_view->prj_prod_admin_pw    = $this->encrypt->decode($project_view->prj_prod_admin_pw);
-			$project_view->prj_testing_admin_pw = $this->encrypt->decode($project_view->prj_testing_admin_pw);
-			$project_view->prj_host_pw          = $this->encrypt->decode($project_view->prj_host_pw);
-			$project_view->prj_ftp_pw           = $this->encrypt->decode($project_view->prj_ftp_pw);
+			$project_view->prj_prod_admin_pw    = $this->encryption->decrypt($project_view->prj_prod_admin_pw);
+			$project_view->prj_testing_admin_pw = $this->encryption->decrypt($project_view->prj_testing_admin_pw);
+			$project_view->prj_host_pw          = $this->encryption->decrypt($project_view->prj_host_pw);
+			$project_view->prj_ftp_pw           = $this->encryption->decrypt($project_view->prj_ftp_pw);
 		
 			//Client Data
 			$clientObj =  new Client_model();
@@ -311,6 +311,21 @@ class Projects extends CI_Controller {
 			$this->data['project_id'] = $projectObj->id;
 			
 			$this->load->view('projects_log_edit', $this->data);
+		}
+	}
+	
+	public function search(){
+		$search_text = $_GET['search_text'];
+		
+		if(isset($search_text)){
+			$ProjObj = new Projects_model();
+// 			$search_projects = $ProjObj->search($search_text);
+			$this->data['search_text']	= $search_text;
+			$this->data['projects'] = $ProjObj->search($search_text);
+		
+			$this->load->view('projects', $this->data);
+		
+			//var_dump($search_projects);
 		}
 	}
 }
