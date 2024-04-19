@@ -60,7 +60,8 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('database', 'encrypt', 'encryption');
+// $autoload['libraries'] = array('database', 'encrypt', 'encryption');//Error in php7.4
+$autoload['libraries'] = array('database', 'encryption');//2020-11-01 with php 7.4
 
 
 /*

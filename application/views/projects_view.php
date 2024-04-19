@@ -161,7 +161,7 @@ Password:     <?php echo $project_view->prj_ftp_pw; ?>
 				<?php foreach($project_logs as $project_log){ ?>
 				<div class="log_record">
 					<p class="date_mod"><?php echo $project_log->log_modified; ?></p>
-					<p class="log_details"><?php echo $project_log->log_details; ?></p>
+					<p class="log_details"><?php echo "<pre style=''>".$project_log->log_details."</pre>"; ?></p>
 					<p class="control_links">
 						<?php echo anchor("projects/log_edit/".$project_log->id, "edit"); ?> |
 						<?php 

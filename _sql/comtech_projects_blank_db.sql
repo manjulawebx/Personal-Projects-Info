@@ -1,32 +1,30 @@
 # ************************************************************
-# Sequel Pro SQL dump
-# Version 4096
+# Sequel Ace SQL dump
+# Version 20064
 #
-# http://www.sequelpro.com/
-# http://code.google.com/p/sequel-pro/
+# https://sequel-ace.com/
+# https://github.com/Sequel-Ace/Sequel-Ace
 #
-# Host: 127.0.0.1 (MySQL 5.6.20-log)
+# Host: localhost (MySQL 8.0.30)
 # Database: comtech_projects
-# Generation Time: 2015-04-04 10:53:17 +0000
+# Generation Time: 2024-04-19 12:27:44 +0000
 # ************************************************************
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+SET NAMES utf8mb4;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40101 SET @OLD_SQL_MODE='NO_AUTO_VALUE_ON_ZERO', SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 # Dump of table clients
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `clients`;
-
 CREATE TABLE `clients` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `telephone` varchar(50) DEFAULT NULL,
@@ -40,11 +38,9 @@ CREATE TABLE `clients` (
 # Dump of table projects
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `projects`;
-
 CREATE TABLE `projects` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `client_id` int(11) DEFAULT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `client_id` int DEFAULT NULL,
   `prj_name` varchar(100) DEFAULT NULL,
   `prj_description` text,
   `prj_prod_url` varchar(200) DEFAULT '',
@@ -79,12 +75,10 @@ CREATE TABLE `projects` (
 # Dump of table projects_log
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `projects_log`;
-
 CREATE TABLE `projects_log` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `project_id` int(11) DEFAULT NULL,
-  `log_details` text,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `project_id` int DEFAULT NULL,
+  `log_details` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
   `log_created` datetime DEFAULT NULL,
   `log_modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)

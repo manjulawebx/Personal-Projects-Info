@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+#[\AllowDynamicProperties]
 class Projects_model extends CI_Model {
 
 		const DB_TABLE = 'projects';

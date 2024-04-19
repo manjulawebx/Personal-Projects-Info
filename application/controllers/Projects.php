@@ -135,7 +135,7 @@ class Projects extends CI_Controller {
 			$project_view->load();
 			
 			//Decode encrypted data to display
-			$project_view->prj_prod_admin_pw    = $this->encryption->decrypt($project_view->prj_prod_admin_pw);
+			$project_view->prj_prod_admin_pw    = $this->encryption->decrypt(strlen($project_view->prj_prod_admin_pw)>0?$project_view->prj_prod_admin_pw:'');
 			$project_view->prj_testing_admin_pw = $this->encryption->decrypt($project_view->prj_testing_admin_pw);
 			$project_view->prj_host_pw          = $this->encryption->decrypt($project_view->prj_host_pw);
 			$project_view->prj_ftp_pw           = $this->encryption->decrypt($project_view->prj_ftp_pw);

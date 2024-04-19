@@ -909,6 +909,9 @@ class CI_Encryption {
 	 */
 	protected static function strlen($str)
 	{
+		if($str==NULL){
+			$str = '';
+		}
 		return (self::$func_overload)
 			? mb_strlen($str, '8bit')
 			: strlen($str);
